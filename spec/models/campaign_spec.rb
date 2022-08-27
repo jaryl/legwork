@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Campaign, type: :model do
-  it { is_expected.to belong_to(:case) }
+  it { is_expected.to belong_to(:need) }
   it { is_expected.to belong_to(:manager) }
   it { is_expected.to belong_to(:pool) }
 

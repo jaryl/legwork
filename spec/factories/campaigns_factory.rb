@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :campaign do
-    association :case
-    association :manager
-    association :pool
+    need
+    manager
+    pool
 
     description { Faker::Lorem.paragraphs }
 

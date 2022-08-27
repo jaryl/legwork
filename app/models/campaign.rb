@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-  belongs_to :case
+  belongs_to :need
   belongs_to :manager
   belongs_to :pool
 

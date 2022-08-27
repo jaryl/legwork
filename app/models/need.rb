@@ -1,4 +1,4 @@
-class Case < ApplicationRecord
+class Need < ApplicationRecord
   belongs_to :beneficiary
   belongs_to :manager
 

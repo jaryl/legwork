@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :case do
+  factory :need do
     beneficiary
     manager
 

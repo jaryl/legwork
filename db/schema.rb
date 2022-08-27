@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_110506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "beneficiaries_gender", ["male", "female"]
-  create_enum "cases_status", ["draft", "active", "archived"]
+  create_enum "needs_status", ["draft", "active", "archived"]
 
   create_table "account_login_change_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
   end
 
   create_table "campaigns", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "case_id", null: false
+    t.uuid "need_id", null: false
     t.uuid "manager_id", null: false
     t.uuid "pool_id", null: false
     t.string "description"
@@ -70,34 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
     t.integer "funding_goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_campaigns_on_case_id"
     t.index ["manager_id"], name: "index_campaigns_on_manager_id"
+    t.index ["need_id"], name: "index_campaigns_on_need_id"
     t.index ["pool_id"], name: "index_campaigns_on_pool_id"
-  end
-
-  create_table "cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "beneficiary_id", null: false
-    t.uuid "manager_id", null: false
-    t.enum "status", enum_type: "cases_status"
-    t.string "nature"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["beneficiary_id"], name: "index_cases_on_beneficiary_id"
-    t.index ["manager_id"], name: "index_cases_on_manager_id"
   end
 
   create_table "coordinators", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "contact_methods", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "disbursements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "case_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_disbursements_on_case_id"
   end
 
   create_table "donations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -118,6 +99,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
     t.string "contact_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "beneficiary_id", null: false
+    t.uuid "manager_id", null: false
+    t.enum "status", enum_type: "needs_status"
+    t.string "nature"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beneficiary_id"], name: "index_needs_on_beneficiary_id"
+    t.index ["manager_id"], name: "index_needs_on_manager_id"
   end
 
   create_table "pools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

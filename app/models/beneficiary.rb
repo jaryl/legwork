@@ -1,5 +1,5 @@
 class Beneficiary < ApplicationRecord
-  has_many :cases
+  has_many :needs
 
   enum gender: {
     male: "male",

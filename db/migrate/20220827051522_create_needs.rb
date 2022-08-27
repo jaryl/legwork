@@ -1,12 +1,12 @@
-class CreateCases < ActiveRecord::Migration[7.0]
+class CreateNeeds < ActiveRecord::Migration[7.0]
   def change
-    create_enum :cases_status, ["draft", "active", "archived"]
+    create_enum :needs_status, ["draft", "active", "archived"]
 
-    create_table :cases, id: :uuid do |t|
+    create_table :needs, id: :uuid do |t|
       t.references :beneficiary, type: :uuid, null: false, index: true
       t.references :manager, type: :uuid, null: false, index: true
 
-      t.enum :status, enum_type: :cases_status
+      t.enum :status, enum_type: :needs_status
 
       t.string :nature
       t.string :description
@@ -16,10 +16,10 @@ class CreateCases < ActiveRecord::Migration[7.0]
   end
 
   def down
-    drop_table :cases
+    drop_table :needs
 
     execute <<-SQL
-      DROP TYPE cases_status;
+      DROP TYPE needs_status;
     SQL
   end
 end
