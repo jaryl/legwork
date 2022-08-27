@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_045045) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_051522) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_045045) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "beneficiaries_gender", ["male", "female"]
+  create_enum "cases_status", ["draft", "active", "archived"]
 
   create_table "account_login_change_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
@@ -57,6 +58,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_045045) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "beneficiary_id", null: false
+    t.enum "status", enum_type: "cases_status"
+    t.string "nature"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beneficiary_id"], name: "index_cases_on_beneficiary_id"
   end
 
   add_foreign_key "account_login_change_keys", "accounts", column: "id"

@@ -13,4 +13,12 @@ class CreateBeneficiaries < ActiveRecord::Migration[7.0]
       t.timestamps
     end
   end
+
+  def down
+    drop_table :beneficiaries
+
+    execute <<-SQL
+      DROP TYPE beneficiaries_gender;
+    SQL
+  end
 end
