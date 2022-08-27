@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Transaction, type: :model do
+RSpec.describe TransactionRecord, type: :model do
   it { is_expected.to belong_to(:pool) }
   it { is_expected.to belong_to(:transactable) }
 

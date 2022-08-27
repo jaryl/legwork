@@ -1,4 +1,4 @@
-class Transaction < ApplicationRecord
+class TransactionRecord < ApplicationRecord
   delegated_type :transactable, types: %w[Disbursement Donation], dependent: :destroy
 
   belongs_to :pool
