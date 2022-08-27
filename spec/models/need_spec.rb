@@ -4,6 +4,8 @@ RSpec.describe Need, type: :model do
   it { is_expected.to belong_to(:beneficiary) }
   it { is_expected.to belong_to(:manager) }
 
+  it { is_expected.to have_many(:disbursements) }
+
   it { is_expected.to validate_presence_of(:nature) }
 
   it { expect(build(:need)).to be_valid }

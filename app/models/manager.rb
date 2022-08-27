@@ -3,6 +3,7 @@ class Manager < ApplicationRecord
 
   has_many :campaigns
   has_many :needs
+  has_many :updates
 
   validates :contact_number, presence: true
 end
