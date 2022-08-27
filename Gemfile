@@ -51,6 +51,12 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # RSpec for Rails 5+
+  gem "rspec-rails", "~> 5.0.0"
+  # A library for setting up Ruby objects as test data
+  gem "factory_bot_rails"
+  # A library for generating fake data such as names, addresses, and phone numbers
+  gem "faker"
 end
 
 group :development do
@@ -69,4 +75,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  # Simple one-liner tests for common Rails functionality
+  gem "shoulda-matchers", "~> 5.0"
+  # Brings back `assigns` and `assert_template` to your Rails tests
+  gem "rails-controller-testing"
 end
