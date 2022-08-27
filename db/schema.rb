@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_103305) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_104343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -127,6 +127,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_103305) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_profiles_on_account_id"
     t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable"
+  end
+
+  create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "pool_id", null: false
+    t.string "transactable_type", null: false
+    t.uuid "transactable_id", null: false
+    t.integer "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pool_id"], name: "index_transactions_on_pool_id"
+    t.index ["transactable_type", "transactable_id"], name: "index_transactions_on_transactable"
   end
 
   create_table "updates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
