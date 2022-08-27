@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_012328) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_045045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "beneficiaries_gender", ["male", "female"]
 
   create_table "account_login_change_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
@@ -43,6 +47,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_012328) do
     t.citext "email", null: false
     t.string "password_hash"
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
+  end
+
+  create_table "beneficiaries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "full_name", null: false
+    t.enum "gender", enum_type: "beneficiaries_gender"
+    t.string "contact_number"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "account_login_change_keys", "accounts", column: "id"
