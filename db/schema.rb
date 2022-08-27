@@ -50,15 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_104343) do
     t.index ["email"], name: "index_accounts_on_email", unique: true, where: "(status = ANY (ARRAY[1, 2]))"
   end
 
-  create_table "assignments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "case_id", null: false
-    t.uuid "manager_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["case_id"], name: "index_assignments_on_case_id"
-    t.index ["manager_id"], name: "index_assignments_on_manager_id"
-  end
-
   create_table "beneficiaries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "full_name", null: false
     t.enum "gender", enum_type: "beneficiaries_gender"
@@ -86,12 +77,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_104343) do
 
   create_table "cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "beneficiary_id", null: false
+    t.uuid "manager_id", null: false
     t.enum "status", enum_type: "cases_status"
     t.string "nature"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["beneficiary_id"], name: "index_cases_on_beneficiary_id"
+    t.index ["manager_id"], name: "index_cases_on_manager_id"
   end
 
   create_table "coordinators", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -154,7 +147,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_104343) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
-  add_foreign_key "assignments", "cases"
-  add_foreign_key "assignments", "managers"
   add_foreign_key "profiles", "accounts"
 end

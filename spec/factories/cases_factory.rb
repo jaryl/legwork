@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :case do
     beneficiary
+    manager
 
     nature { "Medical" }
 

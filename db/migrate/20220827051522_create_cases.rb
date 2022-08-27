@@ -4,6 +4,7 @@ class CreateCases < ActiveRecord::Migration[7.0]
 
     create_table :cases, id: :uuid do |t|
       t.references :beneficiary, type: :uuid, null: false, index: true
+      t.references :manager, type: :uuid, null: false, index: true
 
       t.enum :status, enum_type: :cases_status
 
