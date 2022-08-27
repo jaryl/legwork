@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_090346) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_092053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -89,6 +89,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_090346) do
     t.string "contact_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "handler_type", null: false
+    t.uuid "handler_id", null: false
+    t.string "name", null: false
+    t.string "scheme_class", null: false
+    t.jsonb "scheme_payload", default: "{}", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["handler_type", "handler_id"], name: "index_pools_on_handler"
   end
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
