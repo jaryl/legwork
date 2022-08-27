@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_051522) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_081219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -70,8 +70,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_051522) do
     t.index ["beneficiary_id"], name: "index_cases_on_beneficiary_id"
   end
 
+  create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "account_id", null: false
+    t.string "profileable_type", null: false
+    t.uuid "profileable_id", null: false
+    t.string "display_name", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_profiles_on_account_id"
+    t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable"
+  end
+
   add_foreign_key "account_login_change_keys", "accounts", column: "id"
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
+  add_foreign_key "profiles", "accounts"
 end
