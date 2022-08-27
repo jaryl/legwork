@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_110231) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_111126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -91,6 +91,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_110231) do
     t.jsonb "contact_methods", default: "{}", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "disbursements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "case_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_id"], name: "index_disbursements_on_case_id"
+  end
+
+  create_table "donations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "donor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["donor_id"], name: "index_donations_on_donor_id"
   end
 
   create_table "donors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
