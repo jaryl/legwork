@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_081219) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_083325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -68,6 +68,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_081219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["beneficiary_id"], name: "index_cases_on_beneficiary_id"
+  end
+
+  create_table "managers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "contact_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
