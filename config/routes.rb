@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     end
 
     resources :pools, only: [:index, :show] do
-      # resources :disbursements, only: [:new, :create]
+      resources :disbursements, only: [:new, :create]
     end
   end
 
