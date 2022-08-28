@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :coordinators do
-    # root to: "dashboard#show"
+  namespace :coordinate do
+    root to: "dashboard#show"
 
     # resources :pools, only: [:index, :show, :new, :create, :destroy]
 
