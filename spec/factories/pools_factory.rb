@@ -3,7 +3,7 @@ FactoryBot.define do
     association :handler, factory: :coordinator
 
     name { Faker::Bank.name }
-
+    status { :active }
     scheme_class { "Manual" }
 
     trait :invalid do

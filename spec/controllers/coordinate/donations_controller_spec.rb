@@ -6,7 +6,7 @@ RSpec.describe Coordinate::DonationsController, type: :controller do
   before { sign_in(coordinator.profile.account) }
 
   context "with active pool" do
-    let(:pool) { create(:pool, :active, handler: coordinator) }
+    let(:pool) { create(:pool, handler: coordinator) }
     let(:transaction_record) { create(:transaction_record, pool: pool, transactable: create(:donation)) }
     let(:donation) { transaction_record.transactable }
 

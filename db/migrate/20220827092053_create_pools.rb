@@ -7,7 +7,7 @@ class CreatePools < ActiveRecord::Migration[7.0]
 
       t.string :name, null: false
 
-      t.enum :status, enum_type: :pools_status
+      t.enum :status, enum_type: :pools_status, null: false
 
       t.string :scheme_class, null: false
       t.jsonb :scheme_payload, null: false, default: "{}"

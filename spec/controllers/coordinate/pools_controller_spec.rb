@@ -6,7 +6,7 @@ RSpec.describe Coordinate::PoolsController, type: :controller do
   before { sign_in(coordinator.profile.account) }
 
   context "with active pool" do
-    before { create(:pool, :active, handler: coordinator) }
+    before { create(:pool, handler: coordinator) }
 
     describe "GET #show" do
       before { get :show }

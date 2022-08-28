@@ -125,7 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111349) do
     t.string "handler_type", null: false
     t.uuid "handler_id", null: false
     t.string "name", null: false
-    t.enum "status", enum_type: "pools_status"
+    t.enum "status", null: false, enum_type: "pools_status"
     t.string "scheme_class", null: false
     t.jsonb "scheme_payload", default: "{}", null: false
     t.datetime "created_at", null: false

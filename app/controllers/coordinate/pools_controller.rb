@@ -40,6 +40,6 @@ class Coordinate::PoolsController < Coordinate::BaseController
   def pool_params
     params.require(:pool)
       .permit(:name)
-      .with_defaults(handler: current_coordinator, scheme_class: "Manual")
+      .with_defaults(status: :active, handler: current_coordinator, scheme_class: "Manual")
   end
 end
