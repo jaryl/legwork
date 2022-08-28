@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     #   resource :coordinator, only: [:show, :new, :create, :edit, :update]
     # end
 
-    # resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
-    #   resources :needs, only: [:new, :create, :edit, :update]
-    # end
+    resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
+      # resources :needs, only: [:new, :create, :edit, :update]
+    end
 
     resources :donors, only: [:index, :show]
 
