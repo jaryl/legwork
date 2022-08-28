@@ -1,24 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Coordinate::DonationsController, type: :controller do
-  before { sign_in(account) }
+  let(:coordinator) { create(:coordinator) }
+
+  before { sign_in(coordinator.profile.account) }
 
   context "with active pool" do
-    let(:donation) { create(:donation) }
+    let(:pool) { create(:pool, :active, handler: coordinator) }
+    let(:transaction_record) { create(:transaction_record, pool: pool, transactable: create(:donation)) }
+    let(:donation) { transaction_record.transactable }
 
-    let(:account) { donation.transaction_record.pool.handler.profile.account }
+    before { pool }
 
     describe "GET #index" do
-      before { get :index }
+      before { transaction_record; get :index }
 
       it { expect(assigns(:donations)).to be_present }
       it { expect(response).to render_template(:index) }
     end
 
     describe "GET #show" do
-      before { get :show, params: { id: donation.transaction_record } }
+      before { get :show, params: { id: transaction_record } }
 
-      it { expect(assigns(:donation)).to eq(donation.transaction_record) }
+      it { expect(assigns(:donation)).to eq(transaction_record) }
       it { expect(response).to render_template(:show) }
     end
 
@@ -51,9 +55,6 @@ RSpec.describe Coordinate::DonationsController, type: :controller do
   end
 
   context "with no active pool" do
-    let(:coordinator) { create(:coordinator) }
-    let(:account) { coordinator.profile.account }
-
     describe "GET #index" do
       before { get :index }
 

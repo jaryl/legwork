@@ -4,11 +4,6 @@ class Coordinator < ApplicationRecord
 
   validate :at_least_one_contact_method
 
-  def active_pool
-    # TODO: replace with actual implementation
-    @active_pool ||= self.pools.first
-  end
-
   private
 
   def at_least_one_contact_method

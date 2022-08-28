@@ -6,7 +6,7 @@ RSpec.describe Coordinate::PoolsController, type: :controller do
   before { sign_in(coordinator.profile.account) }
 
   context "with active pool" do
-    before { create(:pool, handler: coordinator) }
+    before { create(:pool, :active, handler: coordinator) }
 
     describe "GET #show" do
       before { get :show }
@@ -32,7 +32,7 @@ RSpec.describe Coordinate::PoolsController, type: :controller do
     describe "DELETE #destroy" do
       before { delete :destroy }
 
-      it { expect(assigns(:pool)).to be_destroyed }
+      it { expect(assigns(:pool)).to be_inactive }
       it { expect(response).to redirect_to(new_coordinate_pool_path) }
       it { expect(response).to have_http_status(:see_other) }
     end

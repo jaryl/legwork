@@ -9,5 +9,13 @@ FactoryBot.define do
     trait :invalid do
       name { "" }
     end
+
+    trait :active do
+      status { :active }
+    end
+
+    trait :inactive do
+      status { :inactive }
+    end
   end
 end

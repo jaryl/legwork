@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111349) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "beneficiaries_gender", ["male", "female"]
   create_enum "needs_status", ["draft", "active", "archived"]
+  create_enum "pools_status", ["active", "inactive"]
 
   create_table "account_login_change_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
@@ -124,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111349) do
     t.string "handler_type", null: false
     t.uuid "handler_id", null: false
     t.string "name", null: false
+    t.enum "status", enum_type: "pools_status"
     t.string "scheme_class", null: false
     t.jsonb "scheme_payload", default: "{}", null: false
     t.datetime "created_at", null: false

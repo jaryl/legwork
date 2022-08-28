@@ -1,5 +1,5 @@
 class CreateNeeds < ActiveRecord::Migration[7.0]
-  def change
+  def up
     create_enum :needs_status, ["draft", "active", "archived"]
 
     create_table :needs, id: :uuid do |t|

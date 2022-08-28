@@ -1,5 +1,5 @@
 class CreateBeneficiaries < ActiveRecord::Migration[7.0]
-  def change
+  def up
     create_enum :beneficiaries_gender, ["male", "female"]
 
     create_table :beneficiaries, id: :uuid do |t|

@@ -3,5 +3,10 @@ class Pool < ApplicationRecord
 
   has_many :transaction_records
 
+  enum status: {
+    active: "active",
+    inactive: "inactive",
+  }
+
   validates :name, presence: true
 end

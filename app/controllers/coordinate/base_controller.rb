@@ -16,6 +16,8 @@ class Coordinate::BaseController < ApplicationController
   end
 
   def current_pool
-    @current_pool ||= current_coordinator.active_pool
+    @current_pool ||= current_coordinator.pools.active.sole
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 end

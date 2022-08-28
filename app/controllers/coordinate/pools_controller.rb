@@ -3,7 +3,7 @@ class Coordinate::PoolsController < Coordinate::BaseController
   before_action :redirect_if_active_pool_present, only: [:new, :create]
 
   def show
-    @pool = current_coordinator.active_pool
+    @pool = current_pool
   end
 
   def new
@@ -20,21 +20,20 @@ class Coordinate::PoolsController < Coordinate::BaseController
   end
 
   def destroy
-    @pool = current_coordinator.active_pool
-    # TODO: replace with flag, instead of deleting record
-    @pool.destroy!
+    @pool = current_pool
+    @pool.inactive!
     redirect_to new_coordinate_pool_path, status: :see_other
   end
 
   private
 
   def redirect_if_no_active_pool
-    return if current_coordinator.active_pool.present?
+    return if current_pool.present?
     redirect_to new_coordinate_pool_path, status: :see_other
   end
 
   def redirect_if_active_pool_present
-    return unless current_coordinator.active_pool.present?
+    return unless current_pool.present?
     redirect_to coordinate_pool_path, status: :see_other
   end
 
