@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       # resource :launch, only: [:show, :create]
       # resource :archive, only: [:show, :create]
 
-      # resources :updates, only: [:new, :create, :edit, :update, :destroy]
+      resources :updates, only: [:new, :create, :edit, :update, :destroy]
     end
 
     resources :pools, only: [:index, :show] do
