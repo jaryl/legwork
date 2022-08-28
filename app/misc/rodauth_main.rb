@@ -9,6 +9,9 @@ class RodauthMain < Rodauth::Rails::Auth
     # See the Rodauth documentation for the list of available config options:
     # http://rodauth.jeremyevans.net/documentation.html
 
+    # enable internal request for testing mockup authentication
+    enable :internal_request if Rails.env.test?
+
     # ==> General
     # The secret key used for hashing public-facing tokens for various features.
     # Defaults to Rails `secret_key_base`, but you can use your own secret key.

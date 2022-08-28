@@ -133,8 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111349) do
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "account_id", null: false
-    t.string "profileable_type", null: false
-    t.uuid "profileable_id", null: false
+    t.string "profileable_type"
+    t.uuid "profileable_id"
     t.string "display_name", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false

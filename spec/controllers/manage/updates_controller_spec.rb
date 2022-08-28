@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Manage::UpdatesController, type: :controller do
   let(:campaign) { create(:campaign) }
   let(:update) { create(:update, campaign: campaign) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #new" do
     before { get :new, params: { campaign_id: campaign } }

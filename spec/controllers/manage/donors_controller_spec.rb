@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Manage::DonorsController, type: :controller do
   let(:donor) { create(:donor) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #index" do
     before { donor; get :index }

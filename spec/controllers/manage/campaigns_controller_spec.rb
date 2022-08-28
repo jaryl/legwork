@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Manage::CampaignsController, type: :controller do
   let(:campaign) { create(:campaign) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #index" do
     before { campaign; get :index }

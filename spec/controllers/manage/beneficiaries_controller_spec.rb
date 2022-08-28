@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Manage::BeneficiariesController, type: :controller do
   let(:beneficiary) { create(:beneficiary) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #index" do
     before { beneficiary; get :index }

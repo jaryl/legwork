@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Manage::NeedsController, type: :controller do
   let(:beneficiary) { create(:beneficiary) }
   let(:need) { create(:need, beneficiary: beneficiary) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #new" do
     before { get :new, params: { beneficiary_id: beneficiary } }

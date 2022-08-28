@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Manage::DisbursementsController, type: :controller do
   let(:pool) { create(:pool) }
+  let(:manager) { create(:manager) }
+
+  before { sign_in(manager.profile.account) }
 
   describe "GET #new" do
     before { get :new, params: { pool_id: pool } }
