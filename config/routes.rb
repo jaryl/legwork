@@ -6,15 +6,7 @@ Rails.application.routes.draw do
   end
 
   namespace :manage do
-    # root to: "dashboard#show"
-
-    # resources :accounts, only: [:index, :show, :new, :create] do
-    #   put :activate, on: :member
-    #   put :deactivate, on: :member
-
-    #   resource :manager, only: [:show, :new, :create, :edit, :update]
-    #   resource :coordinator, only: [:show, :new, :create, :edit, :update]
-    # end
+    root to: "dashboard#show"
 
     resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
       resources :needs, only: [:new, :create, :edit, :update]
@@ -43,5 +35,17 @@ Rails.application.routes.draw do
     # resources :pools, only: [:index, :show, :new, :create, :destroy]
 
     # resources :donations, only: [:index, :show, :new, :create]
+  end
+
+  namespace :admin do
+    # root to: "dashboard#show"
+
+    # resources :accounts, only: [:index, :show, :new, :create] do
+    #   put :activate, on: :member
+    #   put :deactivate, on: :member
+
+    #   resource :manager, only: [:show, :new, :create, :edit, :update]
+    #   resource :coordinator, only: [:show, :new, :create, :edit, :update]
+    # end
   end
 end
