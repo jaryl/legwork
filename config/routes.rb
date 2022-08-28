@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     # end
 
     resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
-      # resources :needs, only: [:new, :create, :edit, :update]
+      resources :needs, only: [:new, :create, :edit, :update]
     end
 
     resources :donors, only: [:index, :show]
