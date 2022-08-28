@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :coordinate do
     root to: "dashboard#show"
 
-    # resources :pools, only: [:index, :show, :new, :create, :destroy]
+    resource :pool, only: [:show, :new, :create, :destroy]
 
     # resources :donations, only: [:index, :show, :new, :create]
   end
