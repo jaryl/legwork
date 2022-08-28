@@ -4,7 +4,7 @@ FactoryBot.define do
     manager
     pool
 
-    description { Faker::Lorem.paragraphs }
+    description { Faker::Lorem.paragraphs.join("\n") }
 
     start_date { 10.days.ago }
     end_date { 10.days.from_now }
@@ -13,6 +13,8 @@ FactoryBot.define do
 
     trait :invalid do
       pool { nil }
+      description { "" }
+      funding_goal { -100 }
     end
   end
 end

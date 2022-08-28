@@ -22,15 +22,15 @@ Rails.application.routes.draw do
 
     resources :donors, only: [:index, :show]
 
-    # resources :campaigns, only: [:index, :show, :new, :create, :edit, :update] do
-    #   put :show
-    #   put :hide
+    resources :campaigns, only: [:index, :show, :new, :create, :edit, :update] do
+      # put :show
+      # put :hide
 
-    #   resource :launch, only: [:show, :create]
-    #   resource :archive, only: [:show, :create]
+      # resource :launch, only: [:show, :create]
+      # resource :archive, only: [:show, :create]
 
-    #   resources :updates, only: [:new, :create, :edit, :update, :destroy]
-    # end
+      # resources :updates, only: [:new, :create, :edit, :update, :destroy]
+    end
 
     resources :pools, only: [:index, :show] do
       # resources :disbursements, only: [:new, :create]
