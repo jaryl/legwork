@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     # resource :account, only: [:show, :edit, :update]
   end
 
-  namespace :managers do
+  namespace :manage do
     # root to: "dashboard#show"
 
     # resources :accounts, only: [:index, :show, :new, :create] do
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     #   resources :needs, only: [:new, :create, :edit, :update]
     # end
 
-    # resources :donors, only: [:index, :show]
+    resources :donors, only: [:index, :show]
 
     # resources :campaigns, only: [:index, :show, :new, :create, :edit, :update] do
     #   put :show
