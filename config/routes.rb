@@ -1,6 +1,47 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # resource :setup, only: [:show, :create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :my do
+    # resource :account, only: [:show, :edit, :update]
+  end
+
+  namespace :managers do
+    # root to: "dashboard#show"
+
+    # resources :accounts, only: [:index, :show, :new, :create] do
+    #   put :activate, on: :member
+    #   put :deactivate, on: :member
+
+    #   resource :manager, only: [:show, :new, :create, :edit, :update]
+    #   resource :coordinator, only: [:show, :new, :create, :edit, :update]
+    # end
+
+    # resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
+    #   resources :needs, only: [:new, :create, :edit, :update]
+    # end
+
+    # resources :donors, only: [:index, :show]
+
+    # resources :campaigns, only: [:index, :show, :new, :create, :edit, :update] do
+    #   put :show
+    #   put :hide
+
+    #   resource :launch, only: [:show, :create]
+    #   resource :archive, only: [:show, :create]
+
+    #   resources :updates, only: [:new, :create, :edit, :update, :destroy]
+    # end
+
+    # resources :pools, only: [:index, :show] do
+    #   resources :disbursements, only: [:new, :create]
+    # end
+  end
+
+  namespace :coordinators do
+    # root to: "dashboard#show"
+
+    # resources :pools, only: [:index, :show, :new, :create, :destroy]
+
+    # resources :donations, only: [:index, :show, :new, :create]
+  end
 end
