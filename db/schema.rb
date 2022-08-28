@@ -145,8 +145,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_111349) do
 
   create_table "transaction_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "pool_id", null: false
-    t.string "transactable_type", null: false
-    t.uuid "transactable_id", null: false
+    t.string "transactable_type"
+    t.uuid "transactable_id"
     t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

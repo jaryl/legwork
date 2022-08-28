@@ -2,13 +2,11 @@ class Manage::DisbursementsController < Manage::BaseController
   before_action :prepare_pool
 
   def new
-    @disbursement = Disbursement.new(transaction_record: @pool.transaction_records.build)
+    @disbursement = @pool.transaction_records.disbursements.build
   end
 
   def create
-    @disbursement = Disbursement.new(transaction_record: @pool.transaction_records.build)
-    @disbursement = Disbursement.new(transaction_record: @pool.transaction_records.build)
-    @disbursement.attributes = disbursement_params
+    @disbursement = @pool.transaction_records.disbursements.build(disbursement_params)
     if @disbursement.save
       redirect_to [:manage, @pool], status: :see_other
     else
@@ -24,8 +22,8 @@ class Manage::DisbursementsController < Manage::BaseController
 
   def disbursement_params
     params.require(:disbursement)
-      .permit(transaction_record_attributes: [:value])
-      .with_defaults(need: current_need)
+      .permit(:value)
+      .with_defaults(transactable: current_need.disbursements.build)
   end
 
   def current_need

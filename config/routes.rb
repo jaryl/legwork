@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     resource :pool, only: [:show, :new, :create, :destroy]
 
-    # resources :donations, only: [:index, :show, :new, :create]
+    resources :donations, only: [:index, :show, :new, :create]
   end
 
   namespace :admin do

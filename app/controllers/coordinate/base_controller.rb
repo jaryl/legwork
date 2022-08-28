@@ -14,4 +14,8 @@ class Coordinate::BaseController < ApplicationController
     # TODO: replace with not authorised custom exception
     raise "Forbidden" if current_coordinator.blank?
   end
+
+  def current_pool
+    @current_pool ||= current_coordinator.active_pool
+  end
 end
