@@ -1,4 +1,4 @@
-class Manage::CampaignsController < ApplicationController
+class Manage::CampaignsController < Manage::BaseController
   def index
     @campaigns = Campaign.all
   end
@@ -43,10 +43,5 @@ class Manage::CampaignsController < ApplicationController
 
   def update_campaign_params
     params.require(:campaign).permit(:description, :start_date, :end_date, :funding_goal)
-  end
-
-  def current_manager
-    # TODO: replace with working implementation
-    @current_manager ||= Manager.first || FactoryBot.create(:manager)
   end
 end

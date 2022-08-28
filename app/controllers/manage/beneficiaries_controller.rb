@@ -1,4 +1,4 @@
-class Manage::BeneficiariesController < ApplicationController
+class Manage::BeneficiariesController < Manage::BaseController
   def index
     @beneficiaries = Beneficiary.all
   end

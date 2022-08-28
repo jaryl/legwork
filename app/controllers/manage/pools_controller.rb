@@ -1,4 +1,4 @@
-class Manage::PoolsController < ApplicationController
+class Manage::PoolsController < Manage::BaseController
   def index
     @pools = Pool.all
   end

@@ -1,4 +1,4 @@
-class Manage::DonorsController < ApplicationController
+class Manage::DonorsController < Manage::BaseController
   def index
     @donors = Donor.all
   end
