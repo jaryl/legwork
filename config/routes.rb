@@ -32,9 +32,9 @@ Rails.application.routes.draw do
     #   resources :updates, only: [:new, :create, :edit, :update, :destroy]
     # end
 
-    # resources :pools, only: [:index, :show] do
-    #   resources :disbursements, only: [:new, :create]
-    # end
+    resources :pools, only: [:index, :show] do
+      # resources :disbursements, only: [:new, :create]
+    end
   end
 
   namespace :coordinators do

@@ -4,6 +4,8 @@ FactoryBot.define do
 
     name { Faker::Bank.name }
 
+    scheme_class { "Manual" }
+
     trait :invalid do
       name { "" }
     end
