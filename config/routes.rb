@@ -42,12 +42,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#show"
 
-    # resources :accounts, only: [:index, :show, :new, :create] do
-    #   put :activate, on: :member
-    #   put :deactivate, on: :member
+    resources :accounts, only: [:index, :show] do
+      # put :activate, on: :member
+      # put :deactivate, on: :member
 
-    #   resource :manager, only: [:show, :new, :create, :edit, :update]
-    #   resource :coordinator, only: [:show, :new, :create, :edit, :update]
-    # end
+      # resource :manager, only: [:show, :new, :create, :edit, :update]
+      # resource :coordinator, only: [:show, :new, :create, :edit, :update]
+    end
   end
 end
