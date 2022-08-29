@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    # root to: "dashboard#show"
+    root to: "dashboard#show"
 
     # resources :accounts, only: [:index, :show, :new, :create] do
     #   put :activate, on: :member
