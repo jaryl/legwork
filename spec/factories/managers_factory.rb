@@ -5,6 +5,7 @@ FactoryBot.define do
     contact_number { Faker::PhoneNumber.phone_number }
 
     trait :invalid do
+      profile { nil }
       contact_number { "" }
     end
   end

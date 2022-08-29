@@ -1,5 +1,5 @@
 class Coordinator < ApplicationRecord
-  has_one :profile, as: :profileable
+  has_one :profile, as: :profileable, required: true
   has_many :pools, as: :handler
 
   validate :at_least_one_contact_method
