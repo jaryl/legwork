@@ -87,3 +87,5 @@ group :test do
   # Brings back `assigns` and `assert_template` to your Rails tests
   gem "rails-controller-testing"
 end
+
+gem "pundit", "~> 2.2"
