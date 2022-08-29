@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # resource :setup, only: [:show, :create]
 
   namespace :my do
+    root to: "dashboard#show"
+
     # resource :account, only: [:show, :edit, :update]
   end
 
