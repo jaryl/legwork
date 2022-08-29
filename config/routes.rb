@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # resource :setup, only: [:show, :create]
+  # root to: "landing#show"
 
   namespace :my do
     root to: "dashboard#show"
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   namespace :manage do
     root to: "dashboard#show"
+
+    # resource :profile, only: [:show, :new, :create, :edit, :update]
 
     resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
       resources :needs, only: [:new, :create, :edit, :update]
@@ -34,6 +36,8 @@ Rails.application.routes.draw do
   namespace :coordinate do
     root to: "dashboard#show"
 
+    # resource :profile, only: [:show, :new, :create, :edit, :update]
+
     resource :pool, only: [:show, :new, :create, :destroy]
 
     resources :donations, only: [:index, :show, :new, :create]
@@ -45,9 +49,14 @@ Rails.application.routes.draw do
     resources :accounts, only: [:index, :show] do
       # put :activate, on: :member
       # put :deactivate, on: :member
-
-      # resource :manager, only: [:show, :new, :create, :edit, :update]
-      # resource :coordinator, only: [:show, :new, :create, :edit, :update]
     end
+
+    # TODO: improve onboarding experience for managers
+    # resources :managers, only: [:index, :new, :create, :destroy]
+
+    # resources :coordinators, only: [:index] do
+    #   put :approve, on: :member
+    #   put :deny, on: :member
+    # end
   end
 end
