@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :manage do
     root to: "dashboard#show"
 
-    # resource :profile, only: [:show, :new, :create, :edit, :update]
+    resource :profile, only: [:show, :new, :create, :edit, :update]
 
     resources :beneficiaries, only: [:index, :show, :new, :create, :edit, :update] do
       resources :needs, only: [:new, :create, :edit, :update]

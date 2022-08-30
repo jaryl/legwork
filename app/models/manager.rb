@@ -6,4 +6,6 @@ class Manager < ApplicationRecord
   has_many :updates
 
   validates :contact_number, presence: true
+
+  accepts_nested_attributes_for :profile, update_only: true
 end
