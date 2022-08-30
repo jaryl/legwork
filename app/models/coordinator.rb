@@ -4,6 +4,8 @@ class Coordinator < ApplicationRecord
 
   validate :at_least_one_contact_method
 
+  accepts_nested_attributes_for :profile, update_only: true
+
   private
 
   def at_least_one_contact_method

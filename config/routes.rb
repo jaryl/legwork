@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   namespace :coordinate do
     root to: "dashboard#show"
 
-    # resource :profile, only: [:show, :new, :create, :edit, :update]
+    resource :profile, only: [:show, :new, :create, :edit, :update]
 
     resource :pool, only: [:show, :new, :create, :destroy]
 
