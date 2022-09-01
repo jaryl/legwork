@@ -1,0 +1,7 @@
+<%= @pool.errors.full_messages %>
+
+<%= simple_form_for @pool, url: coordinate_pool_path do |form| %>
+  <%= form.input :name %>
+
+  <%= form.submit %>
+<%- end %>

@@ -20,9 +20,9 @@ RSpec.describe Coordinate::DonationsController, type: :controller do
     end
 
     describe "GET #show" do
-      before { get :show, params: { id: transaction_record } }
+      before { get :show, params: { id: donation } }
 
-      it { expect(assigns(:donation)).to eq(transaction_record) }
+      it { expect(assigns(:donation)).to eq(donation) }
       it { expect(response).to render_template(:show) }
     end
 
@@ -37,7 +37,12 @@ RSpec.describe Coordinate::DonationsController, type: :controller do
       before { post :create, params: { donation: donation_params } }
 
       context "with valid params" do
-        let(:donation_params) { attributes_for(:transaction_record) }
+        let(:donor_params) { attributes_for(:donor) }
+        let(:transaction_record_params) { attributes_for(:transaction_record) }
+        let(:donation_params) do
+          {}.merge(donor_attributes: donor_params)
+            .merge(transaction_record_attributes: transaction_record_params)
+        end
 
         it { expect(assigns(:donation)).to be_persisted }
         it { expect(response).to redirect_to(coordinate_donation_path(assigns(:donation))) }
@@ -45,7 +50,12 @@ RSpec.describe Coordinate::DonationsController, type: :controller do
       end
 
       context "with invalid params" do
-        let(:donation_params) { attributes_for(:transaction_record, :invalid) }
+        let(:donor_params) { attributes_for(:donor, :invalid) }
+        let(:transaction_record_params) { attributes_for(:transaction_record, :invalid) }
+        let(:donation_params) do
+          {}.merge(donor_attributes: donor_params)
+            .merge(transaction_record_attributes: transaction_record_params)
+        end
 
         it { expect(assigns(:donation)).not_to be_persisted }
         it { expect(response).to render_template(:new) }

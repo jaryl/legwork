@@ -5,4 +5,5 @@ class Donation < ApplicationRecord
   has_one :pool, through: :transaction_record
 
   belongs_to :donor
+  accepts_nested_attributes_for :donor
 end

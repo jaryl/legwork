@@ -1,0 +1,7 @@
+<ul>
+  <%- @donations.each do |donation| %>
+    <li><%= link_to donation.id, [:coordinate, donation] %></li>
+  <%- end %>
+</li>
+
+<%= link_to "Add Donation", [:new, :coordinate, :donation] %>

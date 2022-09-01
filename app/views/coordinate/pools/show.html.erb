@@ -1,0 +1,12 @@
+<%= @pool.inspect %>
+
+<%= link_to "Deactivate Pool", [:coordinate, :pool], data: { turbo_method: :delete } %>
+
+<ul>
+  <%- @pool.transaction_records.each do |transaction_record| %>
+    <li>
+      <%= transaction_record.inspect %>
+    </li>
+  <%- end %>
+</ul>
+

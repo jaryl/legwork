@@ -1,0 +1,16 @@
+<%= @donation.errors.full_messages %>
+
+<%= simple_form_for [:coordinate, @donation] do |form| %>
+<%= form.simple_fields_for :donor do |donor_fields| %>
+    <%= donor_fields.input :name %>
+    <%= donor_fields.input :contact_number %>
+  <%- end %>
+
+  <%= form.simple_fields_for :transaction_record do |transaction_record_fields| %>
+    <%= transaction_record_fields.input :value %>
+  <%- end %>
+
+  <%= form.submit %>
+<%- end %>
+
+<%= link_to "Cancel", [:coordinate, :donations] %>
