@@ -1,0 +1,14 @@
+<%= @beneficiary.errors.full_messages %>
+
+<%= simple_form_for [:manage, @beneficiary] do |form| %>
+  <%= form.input :full_name %>
+  <%= form.input :gender, as: :radio_buttons, collection: Beneficiary.genders %>
+
+  <%= form.input :contact_number %>
+  <%= form.input :email %>
+  <%= form.input :address %>
+
+  <%= form.submit "Save Changes" %>
+<%- end %>
+
+<%= link_to "Cancel", [:manage, @beneficiary] %>

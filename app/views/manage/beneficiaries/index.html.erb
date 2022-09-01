@@ -1,0 +1,7 @@
+<ul>
+  <%- @beneficiaries.each do |beneficiary| %>
+    <%= link_to beneficiary.full_name, [:manage, beneficiary] %>
+  <%- end %>
+</li>
+
+<%= link_to "Add Beneficiary", new_manage_beneficiary_path %>
