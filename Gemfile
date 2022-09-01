@@ -24,6 +24,9 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+# Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup
+gem "simple_form"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
