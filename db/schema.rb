@@ -67,9 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   end
 
   create_table "campaigns", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "need_id", null: false
     t.uuid "manager_id", null: false
-    t.uuid "pool_id", null: false
+    t.uuid "need_id"
+    t.uuid "pool_id"
     t.string "description"
     t.datetime "start_date"
     t.datetime "end_date"

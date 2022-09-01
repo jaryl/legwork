@@ -1,9 +1,9 @@
 class CreateCampaigns < ActiveRecord::Migration[7.0]
   def change
     create_table :campaigns, id: :uuid do |t|
-      t.references :need, type: :uuid, null: false, index: true
       t.references :manager, type: :uuid, null: false, index: true
-      t.references :pool, type: :uuid, null: false, index: true
+      t.references :need, type: :uuid, null: true, index: true
+      t.references :pool, type: :uuid, null: true, index: true
 
       t.string :description
 

@@ -1,0 +1,7 @@
+<ul>
+  <%- @campaigns.each do |campaign| %>
+    <%= link_to campaign.description, [:manage, campaign] %>
+  <%- end %>
+</li>
+
+<%= link_to "Add Campaign", new_manage_campaign_path %>

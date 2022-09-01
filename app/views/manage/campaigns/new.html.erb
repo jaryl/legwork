@@ -1,0 +1,12 @@
+<%= @campaign.errors.full_messages %>
+
+<%= simple_form_for [:manage, @campaign] do |form| %>
+  <%= form.input :description %>
+  <%= form.input :start_date %>
+  <%= form.input :end_date %>
+  <%= form.input :funding_goal %>
+
+  <%= form.submit %>
+<%- end %>
+
+<%= link_to "Cancel", [:manage, :campaigns] %>

@@ -1,7 +1,7 @@
 class Campaign < ApplicationRecord
-  belongs_to :need
   belongs_to :manager
-  belongs_to :pool
+  belongs_to :need, optional: true
+  belongs_to :pool, optional: true
 
   has_many :updates
 
