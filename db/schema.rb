@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   end
 
   create_table "coordinators", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.jsonb "contact_methods", default: "{}", null: false
+    t.jsonb "contact_methods", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -132,7 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
     t.string "name", null: false
     t.enum "status", null: false, enum_type: "pools_status"
     t.string "scheme_class", null: false
-    t.jsonb "scheme_payload", default: "{}", null: false
+    t.jsonb "scheme_payload", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["handler_type", "handler_id"], name: "index_pools_on_handler"
