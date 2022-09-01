@@ -1,0 +1,14 @@
+<%= @disbursement.errors.full_messages %>
+
+<%= simple_form_for [:manage, @pool, @disbursement] do |form| %>
+  <%= form.input :need_id, collection: Need.all %>
+
+  <%= form.simple_fields_for :transaction_record do |transaction_record_fields| %>
+    <%= transaction_record_fields.input :value %>
+  <%- end %>
+
+  <%= form.submit %>
+<%- end %>
+
+<%= link_to "Cancel", [:manage, @pool] %>
+

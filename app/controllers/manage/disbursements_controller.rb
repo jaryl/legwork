@@ -2,11 +2,13 @@ class Manage::DisbursementsController < Manage::BaseController
   before_action :prepare_pool
 
   def new
-    @disbursement = @pool.transaction_records.disbursements.build
+    @disbursement = Disbursement.new { |disbursement| disbursement.build_transaction_record(pool: @pool) }
   end
 
   def create
-    @disbursement = @pool.transaction_records.disbursements.build(disbursement_params)
+    @disbursement = Disbursement.new { |disbursement| disbursement.build_transaction_record(pool: @pool) }
+    @disbursement.attributes = disbursement_params
+
     if @disbursement.save
       redirect_to [:manage, @pool], status: :see_other
     else
@@ -21,13 +23,6 @@ class Manage::DisbursementsController < Manage::BaseController
   end
 
   def disbursement_params
-    params.require(:disbursement)
-      .permit(:value)
-      .with_defaults(transactable: current_need.disbursements.build)
-  end
-
-  def current_need
-    # TODO: replace with actual implementation
-    @current_need ||= Need.first
+    params.require(:disbursement).permit(:need_id, transaction_record_attributes: [:value])
   end
 end

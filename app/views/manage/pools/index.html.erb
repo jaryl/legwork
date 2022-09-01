@@ -1,5 +1,5 @@
 <ul>
   <%- @pools.each do |pool| %>
-    <%= link_to pool.description, [:manage, pool] %>
+    <%= link_to pool.name, [:manage, pool] %>
   <%- end %>
 </li>

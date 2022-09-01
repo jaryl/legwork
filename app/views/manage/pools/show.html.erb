@@ -1,3 +1,13 @@
 <%= @pool.inspect %>
 
 <%= link_to "Back", [:manage, :pools] %>
+
+<ul>
+  <%- @pool.transaction_records.each do |transaction_record| %>
+    <li>
+      <%= transaction_record.inspect %>
+    </li>
+  <%- end %>
+</ul>
+
+<%= link_to "Add Disbursement", [:new, :manage, @pool, :disbursement] %>
