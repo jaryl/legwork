@@ -3,3 +3,14 @@
 <%= link_to "Edit", [:edit, :manage, @beneficiary] %>
 
 <%= link_to "Back", [:manage, :beneficiaries] %>
+
+<ul>
+  <%- @beneficiary.needs.each do |need| %>
+    <li>
+      <%= need.inspect %>
+      <%= link_to "Edit", [:edit, :manage, @beneficiary, need] %>
+    </li>
+  <%- end %>
+</ul>
+
+<%= link_to "Add Need", [:new, :manage, @beneficiary, :need] %>

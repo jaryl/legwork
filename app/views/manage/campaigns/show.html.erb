@@ -3,3 +3,14 @@
 <%= link_to "Edit", [:edit, :manage, @campaign] %>
 
 <%= link_to "Back", [:manage, :campaigns] %>
+
+<ul>
+  <%- @campaign.updates.each do |update| %>
+    <li>
+      <%= update.inspect %>
+      <%= link_to "Edit", [:edit, :manage, @campaign, update] %>
+    </li>
+  <%- end %>
+</ul>
+
+<%= link_to "Add Update", [:new, :manage, @campaign, :update] %>

@@ -1,0 +1,9 @@
+<%= @update.errors.full_messages %>
+
+<%= simple_form_for [:manage, @campaign, @update] do |form| %>
+  <%= form.input :body %>
+
+  <%= form.submit %>
+<%- end %>
+
+<%= link_to "Cancel", [:manage, @campaign] %>
