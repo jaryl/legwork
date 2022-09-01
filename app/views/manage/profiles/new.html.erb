@@ -1,0 +1,8 @@
+<%= @profile.errors.full_messages %>
+<%= simple_form_for @profile, url: manage_profile_path do |form| %>
+  <%= form.input :contact_number %>
+  <%= form.simple_fields_for :profile do |profile_fields| %>
+    <%= profile_fields.input :display_name %>
+  <%- end %>
+  <%= form.submit %>
+<%- end %>

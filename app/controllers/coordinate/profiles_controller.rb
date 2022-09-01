@@ -8,13 +8,14 @@ class Coordinate::ProfilesController < Coordinate::BaseController
   end
 
   def new
-    @profile = Coordinator.new
+    @profile = Coordinator.new { |coordinator| coordinator.build_profile }
+    @profile.contact_methods += [ContactMethod.new]
   end
 
   def create
-    @profile = Coordinator.new(profile_params) do |coordinator|
-      coordinator.profile.account = current_account
-    end
+    @profile = Coordinator.new { |coordinator| coordinator.build_profile }
+    @profile.attributes = profile_params
+    @profile.profile.account = current_account
 
     if @profile.save
       redirect_to coordinate_profile_path, status: :see_other
@@ -43,7 +44,7 @@ class Coordinate::ProfilesController < Coordinate::BaseController
 
   def profile_params
     params.require(:coordinator).permit(
-      contact_methods: [:type, :value],
+      contact_methods_attributes: [:type, :value],
       profile_attributes: [:display_name],
     )
   end

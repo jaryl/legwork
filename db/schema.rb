@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   end
 
   create_table "coordinators", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.jsonb "contact_methods", default: {}, null: false
+    t.jsonb "contact_methods", default: [], null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

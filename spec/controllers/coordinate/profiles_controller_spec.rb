@@ -24,8 +24,13 @@ RSpec.describe Coordinate::ProfilesController, type: :controller do
       before { post :create, params: { coordinator: coordinator_params } }
 
       context "with valid params" do
+        let(:contact_methods_params) { { "0" => attributes_for(:contact_method) } }
         let(:profile_params) { attributes_for(:profile) }
-        let(:coordinator_params) { attributes_for(:coordinator).merge(profile_attributes: profile_params) }
+        let(:coordinator_params) do
+          attributes_for(:coordinator)
+            .merge(contact_methods_attributes: contact_methods_params)
+            .merge(profile_attributes: profile_params)
+        end
 
         it { expect(assigns(:profile)).to be_persisted }
         it { expect(response).to redirect_to(coordinate_profile_path) }

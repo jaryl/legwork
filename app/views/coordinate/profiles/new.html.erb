@@ -1,0 +1,14 @@
+<%= @profile.errors.full_messages %>
+<%= simple_form_for @profile, url: coordinate_profile_path do |form| %>
+
+  <%= form.simple_fields_for :contact_methods do |contact_methods_fields| %>
+    <%= contact_methods_fields.input :type %>
+    <%= contact_methods_fields.input :value %>
+  <%- end %>
+
+  <%= form.simple_fields_for :profile do |profile_fields| %>
+    <%= profile_fields.input :display_name %>
+  <%- end %>
+
+  <%= form.submit %>
+<%- end %>

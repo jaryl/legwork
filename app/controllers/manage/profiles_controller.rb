@@ -9,11 +9,12 @@ class Manage::ProfilesController < Manage::BaseController
 
   def new
     # TODO: check if there is an existing invite
-    @profile = Manager.new
+    @profile = Manager.new { |manager| manager.build_profile }
   end
 
   def create
-    @profile = Manager.new(profile_params)
+    @profile = Manager.new { |manager| manager.build_profile }
+    @profile.attributes = profile_params
     @profile.profile.account = current_account
 
     if @profile.save
