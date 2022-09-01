@@ -13,19 +13,11 @@
 
   <body class="h-full">
 
-    <div>
-      <%= render "layouts/sidebar" %>
-
-      <div class="flex flex-1 flex-col md:pl-64">
-        <%= render "layouts/header" %>
-
-        <main class="flex-1">
-          <div class="py-6">
-            <%= yield %>
-          </div>
-        </main>
+    <main class="flex-1">
+      <div class="py-6">
+        <%= yield %>
       </div>
-    </div>
+    </main>
 
   </body>
 </html>

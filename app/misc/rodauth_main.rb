@@ -120,6 +120,8 @@ class RodauthMain < Rodauth::Rails::Auth
     # Redirect to home page after logout.
     logout_redirect "/"
 
+    login_redirect { rails_routes.my_root_path }
+
     # Redirect to wherever login redirects to after account verification.
     verify_account_redirect { login_redirect }
 

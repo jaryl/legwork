@@ -1,5 +1,5 @@
 <ul>
   <%- @donors.each do |donor| %>
-    <%= link_to donor.description, [:manage, donor] %>
+    <%= link_to donor.name, [:manage, donor] %>
   <%- end %>
 </li>

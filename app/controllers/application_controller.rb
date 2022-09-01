@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  helper_method :current_coordinator
+  helper_method :current_manager
+  helper_method :current_admin
+
   private
 
   def current_coordinator
