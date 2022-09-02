@@ -10,6 +10,7 @@ RSpec.describe Campaign, type: :model do
   it { is_expected.to validate_numericality_of(:funding_goal).only_integer.is_greater_than(0) }
   it { is_expected.to validate_presence_of(:funding_goal) }
 
+  it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:description) }
   it { is_expected.to validate_presence_of(:start_date) }
   it { is_expected.to validate_presence_of(:end_date) }

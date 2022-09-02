@@ -6,7 +6,7 @@ class CreateNeeds < ActiveRecord::Migration[7.0]
       t.references :beneficiary, type: :uuid, null: false, index: true
       t.references :manager, type: :uuid, null: false, index: true
 
-      t.enum :status, enum_type: :needs_status
+      t.enum :status, enum_type: :needs_status, null: false
 
       t.string :nature
       t.string :description

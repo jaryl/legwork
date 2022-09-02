@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "beneficiaries_gender", ["male", "female"]
+  create_enum "campaigns_status", ["draft", "active", "closed"]
   create_enum "needs_status", ["draft", "active", "archived"]
   create_enum "pools_status", ["active", "inactive"]
 
@@ -70,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
     t.uuid "manager_id", null: false
     t.uuid "need_id"
     t.uuid "pool_id"
+    t.enum "status", null: false, enum_type: "campaigns_status"
+    t.string "title"
     t.string "description"
     t.datetime "start_date"
     t.datetime "end_date"
@@ -117,7 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   create_table "needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "beneficiary_id", null: false
     t.uuid "manager_id", null: false
-    t.enum "status", enum_type: "needs_status"
+    t.enum "status", null: false, enum_type: "needs_status"
     t.string "nature"
     t.string "description"
     t.datetime "created_at", null: false

@@ -3,6 +3,8 @@ FactoryBot.define do
     beneficiary
     manager
 
+    status { :draft }
+
     nature { "Medical" }
 
     trait :invalid do

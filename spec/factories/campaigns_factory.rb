@@ -4,6 +4,9 @@ FactoryBot.define do
     manager
     pool
 
+    status { :draft }
+
+    title { Faker::GreekPhilosophers.quote }
     description { Faker::Lorem.paragraphs.join("\n") }
 
     start_date { 10.days.ago }
