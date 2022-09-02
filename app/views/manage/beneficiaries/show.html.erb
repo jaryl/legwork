@@ -54,15 +54,17 @@
         </div>
       </div>
 
-      <section id="overview" data-tabs-target="section" class="overflow-hidden bg-white sm:rounded-lg mb-8">
-        <div class="p-8">
-          <h2>Overview</h2>
+      <section id="overview" data-tabs-target="section" class="mb-8">
+        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto mb-8" %>
+
+        <div class="overflow-hidden bg-white sm:rounded-lg">
+          <div class="p-8">
+            <h2>Overview</h2>
+          </div>
         </div>
       </section>
 
       <section id="archive" data-tabs-target="section" class="mb-8">
-        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto" %>
-
         <ul role="list" class="space-y-2 py-4 sm:space-y-4">
           <%- @beneficiary.needs.each do |need| %>
             <li class="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
@@ -105,11 +107,11 @@
 
             <div class="flex justify-between py-3 text-sm font-medium">
               <dt class="text-gray-500">Gender</dt>
-              <dd class="whitespace-nowrap text-gray-900"><%= @beneficiary.gender.titleize %></dd>
+              <dd class="whitespace-nowrap text-gray-900"><%= @beneficiary.gender&.titleize %></dd>
             </div>
 
             <div class="flex justify-between py-3 text-sm font-medium">
-              <dt class="text-gray-500">Conact number</dt>
+              <dt class="text-gray-500">Contact number</dt>
               <dd class="whitespace-nowrap text-gray-900"><%= @beneficiary.contact_number %></dd>
             </div>
 

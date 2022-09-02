@@ -56,8 +56,10 @@
 
       <section id="overview" data-tabs-target="section" class="hidden overflow-hidden bg-white sm:rounded-lg mb-8">
         <div class="p-8">
-          <h2>Campaign</h2>
-          <%= @campaign.description %>
+          <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">
+            <%= @campaign.title %>
+          </h3>
+          <%= simple_format @campaign.description %>
         </div>
       </section>
 
@@ -92,14 +94,14 @@
     <div class="space-y-8 xl:w-96">
       <div class="overflow-hidden bg-white sm:rounded-lg flex-2">
         <div class="p-8">
-          <h2>Need</h2>
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Beneficiary</h3>
           <%= @campaign.need.inspect %>
         </div>
       </div>
 
       <div class="overflow-hidden bg-white sm:rounded-lg flex-1">
         <div class="p-8">
-          <h2>Pool</h2>
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Coordinator</h3>
           <%= @campaign.pool.inspect %>
         </div>
       </div>

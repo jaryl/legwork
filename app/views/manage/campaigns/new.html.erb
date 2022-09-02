@@ -1,12 +1,27 @@
-<%= @campaign.errors.full_messages %>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl space-y-8">
 
-<%= simple_form_for [:manage, @campaign] do |form| %>
-  <%= form.input :description %>
-  <%= form.input :start_date %>
-  <%= form.input :end_date %>
-  <%= form.input :funding_goal %>
+    <div class="mx-auto max-w-4xl text-center mt-8">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Start a New Campaign</h2>
+      <p class="mt-3 text-xl text-gray-500 sm:mt-4">Campaigns will not go live immediately, so you can take your time to work in draft mode.</p>
+    </div>
 
-  <%= form.submit %>
-<%- end %>
+    <div class="overflow-hidden rounded-lg bg-white shadow">
+      <div class="px-4 py-5 sm:p-6">
 
-<%= link_to "Cancel", [:manage, :campaigns] %>
+        <%= simple_form_for [:manage, @campaign], class: "space-y-8 divide-y divide-gray-200" do |form| %>
+          <%= render form %>
+
+          <div class="pt-5">
+            <hr class="my-8"/>
+            <div class="flex justify-end">
+              <%= link_to "Cancel", [:manage, :campaigns], class: "rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+              <%= form.submit "Start Campaign", class: "ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+            </div>
+          </div>
+        <%- end %>
+
+      </div>
+    </div>
+  </div>
+</div>

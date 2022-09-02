@@ -37,11 +37,11 @@ class Manage::CampaignsController < Manage::BaseController
 
   def create_campaign_params
     params.require(:campaign)
-      .permit(:need_id, :pool_id, :description, :start_date, :end_date, :funding_goal)
-      .with_defaults(manager: current_manager)
+      .permit(:need_id, :pool_id, :title, :description, :start_date, :end_date, :funding_goal)
+      .with_defaults(manager: current_manager, status: :draft)
   end
 
   def update_campaign_params
-    params.require(:campaign).permit(:description, :start_date, :end_date, :funding_goal)
+    params.require(:campaign).permit(:title, :description, :start_date, :end_date, :funding_goal)
   end
 end
