@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Manage::UpdatesController, type: :controller do
+RSpec.describe Manage::Campaigns::UpdatesController, type: :controller do
   let(:campaign) { create(:campaign) }
   let(:update) { create(:update, campaign: campaign) }
   let(:manager) { create(:manager) }
@@ -48,7 +48,7 @@ RSpec.describe Manage::UpdatesController, type: :controller do
       let(:update_params) { attributes_for(:update) }
 
       it { expect(assigns(:update)).not_to be_changed }
-      it { expect(response).to redirect_to(manage_campaign_path(campaign)) }
+      it { expect(response).to redirect_to(manage_campaign_path(campaign, anchor: "updates")) }
       it { expect(response).to have_http_status(:see_other) }
     end
 

@@ -1,4 +1,4 @@
-class Manage::UpdatesController < Manage::BaseController
+class Manage::Campaigns::UpdatesController < Manage::BaseController
   before_action :prepare_campaign
   before_action :prepare_update, only: [:edit, :update, :destroy]
 
@@ -20,7 +20,7 @@ class Manage::UpdatesController < Manage::BaseController
 
   def update
     if @update.update(update_update_params)
-      redirect_to [:manage, @campaign], status: :see_other
+      redirect_to manage_campaign_path(@campaign, anchor: "updates"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

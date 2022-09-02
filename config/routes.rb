@@ -22,10 +22,15 @@ Rails.application.routes.draw do
       # put :show
       # put :hide
 
-      # resource :launch, only: [:show, :create]
-      # resource :archive, only: [:show, :create]
+      scope module: "campaigns" do
+        # resource :launch, only: [:show, :create]
+        # resource :archive, only: [:show, :create]
 
-      resources :updates, only: [:new, :create, :edit, :update, :destroy]
+        # resource :need, only: [:show, :new, :create, :destroy]
+        # resource :pool, only: [:show, :new, :create, :destroy]
+
+        resources :updates, only: [:new, :create, :edit, :update, :destroy]
+      end
     end
 
     resources :pools, only: [:index, :show] do
