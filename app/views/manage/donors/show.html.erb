@@ -1,3 +1,22 @@
-<%= @donor.inspect %>
+<%= turbo_stream.replace :header_title do %>
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Donors</h2>
+<%- end %>
 
-<%= link_to "Back", [:manage, :donors] %>
+<div class="container mx-auto">
+
+  <div class="px-4 sm:px-6 lg:px-12">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <%= link_to "Back", [:manage, :donors] %>
+      </div>
+
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 flex flex-col xl:flex-row px-4 sm:px-6 lg:px-12 gap-8">
+    <%= @donor.inspect %>
+  </div>
+
+</div>

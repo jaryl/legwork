@@ -6,6 +6,8 @@ class Coordinator < ApplicationRecord
 
   accepts_nested_attributes_for :profile, update_only: true
 
+  delegate :display_name, to: :profile
+
   def contact_methods
     super.map { |params| ContactMethod.new(params) }
   end

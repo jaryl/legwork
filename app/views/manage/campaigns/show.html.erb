@@ -1,16 +1,100 @@
-<%= @campaign.inspect %>
+<%= turbo_stream.replace :header_title do %>
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Campaigns</h2>
+<%- end %>
 
-<%= link_to "Edit", [:edit, :manage, @campaign] %>
+<div class="container mx-auto">
 
-<%= link_to "Back", [:manage, :campaigns] %>
+  <div class="px-4 sm:px-6 lg:px-12">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <%= link_to "Back", [:manage, :campaigns] %>
+      </div>
 
-<ul>
-  <%- @campaign.updates.each do |update| %>
-    <li>
-      <%= update.inspect %>
-      <%= link_to "Edit", [:edit, :manage, @campaign, update] %>
-    </li>
-  <%- end %>
-</ul>
+      <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <%= link_to "Edit Campaign", [:edit, :manage, @campaign], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto" %>
+      </div>
+    </div>
+  </div>
 
-<%= link_to "Add Update", [:new, :manage, @campaign, :update] %>
+  <div class="mt-8 flex flex-col xl:flex-row px-4 sm:px-6 lg:px-12 gap-8">
+
+    <div class="flex-1">
+
+      <div class="mb-8">
+        <div class="sm:hidden">
+          <label for="tabs" class="sr-only">Select a tab</label>
+          <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+          <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <option selected>Interview</option>
+            <option>Offer</option>
+          </select>
+        </div>
+        <div class="hidden sm:block">
+          <div class="border-b border-gray-200">
+            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+              <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm">Overview</a>
+
+              <a href="#" class="border-indigo-500 text-indigo-600 whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
+                Updates
+                <span class="bg-indigo-100 text-indigo-600 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
+                  <%= @campaign.updates.count %>
+                </span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-hidden bg-white sm:rounded-lg mb-8">
+        <div class="p-8">
+          <h2>Campaign</h2>
+          <%= @campaign.description %>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <%= link_to "Write Update", [:new, :manage, @campaign, :update], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto" %>
+        <ul role="list" class="space-y-2 py-4 sm:space-y-4">
+          <%- @campaign.updates.each do |update| %>
+            <li class="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
+              <div class="sm:flex sm:items-baseline sm:justify-between">
+                <h3 class="text-base font-medium">
+                  <span class="text-gray-900"><%= update.manager.display_name %></span>
+                  <span class="text-gray-600"></span>
+                </h3>
+                <p class="mt-1 whitespace-nowrap text-sm text-gray-600 sm:mt-0 sm:ml-3">
+                  <%= time_tag update.created_at %>
+                </p>
+              </div>
+              <div class="mt-4 space-y-6 text-sm text-gray-800">
+                <%= simple_format update.body %>
+                <hr />
+                <div class="flex divide-x">
+                  <%= link_to "Edit", [:edit, :manage, @campaign, update], class: "block pr-6 text-gray-400" %>
+                  <%= link_to "Delete", [:manage, @campaign, update], class: "block px-6 text-gray-400", data: { turbo_method: :delete } %>
+                </div>
+              </div>
+            </li>
+          <%- end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="space-y-8 xl:w-96">
+      <div class="overflow-hidden bg-white sm:rounded-lg flex-2">
+        <div class="p-8">
+          <h2>Need</h2>
+          <%= @campaign.need.inspect %>
+        </div>
+      </div>
+
+      <div class="overflow-hidden bg-white sm:rounded-lg flex-1">
+        <div class="p-8">
+          <h2>Pool</h2>
+          <%= @campaign.pool.inspect %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

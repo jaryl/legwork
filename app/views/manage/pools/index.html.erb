@@ -1,5 +1,50 @@
-<ul>
-  <%- @pools.each do |pool| %>
-    <%= link_to pool.name, [:manage, pool] %>
-  <%- end %>
-</li>
+<%= turbo_stream.replace :header_title do %>
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Pools</h2>
+<%- end %>
+
+<div class="container mx-auto">
+  <div class="px-4 sm:px-6 lg:px-12">
+
+    <div class="mt-8 overflow-hidden bg-white sm:rounded-lg">
+      <div class="flex flex-col">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+
+              <thead>
+                <tr>
+                  <th scope="col" class="py-8 pl-4 px-3 text-left text-sm font-normal text-gray-500 sm:pl-6">Name</th>
+                  <th scope="col" class="py-8 px-3 text-left text-sm font-normal text-gray-500">Scheme</th>
+                  <th scope="col" class="py-8 px-3 text-left text-sm font-normal text-gray-500">Status</th>
+                  <th scope="col" class="py-8 px-3 text-left text-sm font-normal text-gray-500">Handler</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-gray-200">
+                <%- @pools.each do |pool| %>
+                  <tr>
+                    <td class="whitespace-nowrap py-8 pl-4 px-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      <%= link_to pool.name, [:manage, pool] %>
+                    </td>
+                    <td class="whitespace-nowrap py-8 px-3 text-sm text-gray-900">
+                      <%= pool.scheme_class %>
+                    </td>
+                    <td class="whitespace-nowrap py-8 px-3 text-sm text-gray-900">
+                      <%= pool.status %>
+                    </td>
+                    <td class="whitespace-nowrap py-8 px-3 text-sm text-gray-900">
+                      <%= pool.handler.display_name %>
+                    </td>
+                  </tr>
+                <%- end %>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>

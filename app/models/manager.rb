@@ -8,4 +8,6 @@ class Manager < ApplicationRecord
   validates :contact_number, presence: true
 
   accepts_nested_attributes_for :profile, update_only: true
+
+  delegate :display_name, to: :profile
 end
