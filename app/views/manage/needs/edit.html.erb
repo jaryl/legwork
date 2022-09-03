@@ -1,7 +1,7 @@
 <%= @need.errors.full_messages %>
 
 <%= simple_form_for [:manage, @beneficiary, @need] do |form| %>
-  <%= form.input :nature %>
+  <%= form.input :label_id %>
   <%= form.input :description %>
 
   <%= form.submit "Save Changes" %>

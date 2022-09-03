@@ -5,10 +5,10 @@ class CreateNeeds < ActiveRecord::Migration[7.0]
     create_table :needs, id: :uuid do |t|
       t.references :beneficiary, type: :uuid, null: false, index: true
       t.references :manager, type: :uuid, null: false, index: true
+      t.references :label, type: :uuid, null: false, index: true
 
       t.enum :status, enum_type: :needs_status, null: false
 
-      t.string :nature
       t.string :description
 
       t.timestamps

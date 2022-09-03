@@ -111,6 +111,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "labels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "managers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "contact_number"
     t.datetime "created_at", null: false
@@ -120,12 +126,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_055626) do
   create_table "needs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "beneficiary_id", null: false
     t.uuid "manager_id", null: false
+    t.uuid "label_id", null: false
     t.enum "status", null: false, enum_type: "needs_status"
-    t.string "nature"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["beneficiary_id"], name: "index_needs_on_beneficiary_id"
+    t.index ["label_id"], name: "index_needs_on_label_id"
     t.index ["manager_id"], name: "index_needs_on_manager_id"
   end
 

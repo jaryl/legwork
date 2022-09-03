@@ -6,7 +6,7 @@
         <%= form.input :title, label: false, input: false do %>
           <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= form.input_field :title, class: "block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
+            <%= form.input_field :title, class: input_class(error: form.object.errors[:title].present?) %>
           </div>
         <%- end %>
       </div>
@@ -15,7 +15,7 @@
         <%= form.input :description, label: false, input: false do %>
           <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= form.input_field :description, as: :text, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm", rows: 8 %>
+            <%= form.input_field :description, as: :text, class: input_class(error: form.object.errors[:description].present?), rows: 8 %>
           </div>
           <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
         <%- end %>
@@ -28,21 +28,21 @@
       <%= form.input :start_date, label: false, input: false, wrapper_class: "sm:col-span-3" do %>
         <%= form.label :start_date, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex">
-          <%= form.input_field :start_date, as: :date, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
+          <%= form.input_field :start_date, as: :date, class: input_class(error: form.object.errors[:start_date].present?) %>
         </div>
       <%- end %>
 
       <%= form.input :end_date, label: false, input: false, wrapper_class: "sm:col-span-3" do %>
         <%= form.label :end_date, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex">
-          <%= form.input_field :end_date, as: :date, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
+          <%= form.input_field :end_date, as: :date, class: input_class(error: form.object.errors[:end_date].present?) %>
         </div>
       <%- end %>
 
       <%= form.input :funding_goal, label: false, input: false, wrapper_class: "sm:col-span-6" do %>
         <%= form.label :funding_goal, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex">
-          <%= form.input_field :funding_goal, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
+          <%= form.input_field :funding_goal, class: input_class(error: form.object.errors[:funding_goal].present?) %>
         </div>
       <%- end %>
     </div>

@@ -2,13 +2,14 @@ FactoryBot.define do
   factory :need do
     beneficiary
     manager
+    label
 
     status { :draft }
 
-    nature { "Medical" }
+    description { Faker::Lorem.paragraph }
 
     trait :invalid do
-      nature { "" }
+      description { "" }
     end
   end
 end

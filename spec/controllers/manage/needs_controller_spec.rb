@@ -4,6 +4,7 @@ RSpec.describe Manage::NeedsController, type: :controller do
   let(:beneficiary) { create(:beneficiary) }
   let(:need) { create(:need, beneficiary: beneficiary) }
   let(:manager) { create(:manager) }
+  let(:label) { create(:label) }
 
   before { sign_in(manager.profile.account) }
 
@@ -18,7 +19,7 @@ RSpec.describe Manage::NeedsController, type: :controller do
     before { post :create, params: { beneficiary_id: beneficiary, need: need_params } }
 
     context "with valid params" do
-      let(:need_params) { attributes_for(:need) }
+      let(:need_params) { attributes_for(:need).merge(label_id: label) }
 
       it { expect(assigns(:need)).to be_persisted }
       it { expect(response).to redirect_to(manage_beneficiary_path(beneficiary)) }

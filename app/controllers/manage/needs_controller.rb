@@ -38,11 +38,11 @@ class Manage::NeedsController < Manage::BaseController
 
   def create_need_params
     params.require(:need)
-      .permit(:nature, :description)
+      .permit(:label_id, :description)
       .with_defaults(manager: current_manager, status: :draft)
   end
 
   def update_need_params
-    params.require(:need).permit(:status, :nature, :description)
+    params.require(:need).permit(:status, :label_id, :description)
   end
 end
