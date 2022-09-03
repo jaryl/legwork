@@ -55,7 +55,7 @@
       </div>
 
       <section id="overview" data-tabs-target="section" class="mb-8">
-        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto mb-8" %>
+        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], data: { turbo_frame: :modal }, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto mb-8" %>
 
         <div class="overflow-hidden bg-white sm:rounded-lg">
           <div class="p-8">
@@ -65,28 +65,34 @@
       </section>
 
       <section id="archive" data-tabs-target="section" class="mb-8">
-        <ul role="list" class="space-y-2 py-4 sm:space-y-4">
-          <%- @beneficiary.needs.each do |need| %>
-            <li class="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
-              <div class="sm:flex sm:items-baseline sm:justify-between">
-                <h3 class="text-base font-medium">
-                  <span class="text-gray-900"><%= need.label.name %></span>
-                  <span class="text-gray-600"><%= need.manager.display_name %></span>
-                </h3>
-                <p class="mt-1 whitespace-nowrap text-sm text-gray-600 sm:mt-0 sm:ml-3">
-                  <%= time_tag need.created_at %>
-                </p>
-              </div>
-              <div class="mt-4 space-y-6 text-sm text-gray-800">
-                <%= simple_format need.description %>
-                <hr />
-                <div class="flex divide-x">
-                  <%= link_to "Edit", [:edit, :manage, @beneficiary, need], class: "block pr-6 text-gray-400" %>
+        <%= turbo_frame_tag :manage_beneficiary_needs do %>
+
+          <%= render partial: "modal_reset" %>
+
+          <ul role="list" class="space-y-2 py-4 sm:space-y-4">
+            <%- @beneficiary.needs.each do |need| %>
+              <li class="bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
+                <div class="sm:flex sm:items-baseline sm:justify-between">
+                  <h3 class="text-base font-medium">
+                    <span class="text-gray-900"><%= need.label.name %></span>
+                    <span class="text-gray-600"><%= need.manager.display_name %></span>
+                  </h3>
+                  <p class="mt-1 whitespace-nowrap text-sm text-gray-600 sm:mt-0 sm:ml-3">
+                    <%= time_tag need.created_at %>
+                  </p>
                 </div>
-              </div>
-            </li>
-          <%- end %>
-        </ul>
+                <div class="mt-4 space-y-6 text-sm text-gray-800">
+                  <%= simple_format need.description %>
+                  <hr />
+                  <div class="flex divide-x">
+                    <%= link_to "Edit", [:edit, :manage, @beneficiary, need], data: { turbo_frame: :modal }, class: "block pr-6 text-gray-400" %>
+                  </div>
+                </div>
+              </li>
+            <%- end %>
+          </ul>
+
+        <%- end %>
       </div>
     </section>
 

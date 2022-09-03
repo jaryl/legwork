@@ -3,9 +3,8 @@
 <%- end %>
 
 <%= turbo_frame_tag :admin_labels do %>
-  <%= turbo_stream.replace :modal do %>
-    <%= turbo_frame_tag :modal %>
-  <%-end %>
+
+  <%= render partial: "modal_reset" %>
 
   <div class="container mx-auto">
 
