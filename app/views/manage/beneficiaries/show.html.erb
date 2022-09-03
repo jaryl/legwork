@@ -11,7 +11,7 @@
       </div>
 
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <%= link_to "Edit Beneficiary", [:edit, :manage, @beneficiary], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto" %>
+        <%= link_to "Edit Beneficiary", [:edit, :manage, @beneficiary], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto" %>
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
       data-tabs-hidden-class="hidden"
       data-tabs-section-selected-class=""
       data-tabs-section-default-class="hidden"
-      data-tabs-tab-selected-class="border-indigo-500 text-indigo-600"
+      data-tabs-tab-selected-class="border-green-500 text-green-600"
       data-tabs-tab-default-class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200"
       data-tabs-default-value="#overview"
       class="flex-1"
@@ -33,7 +33,7 @@
         <div class="sm:hidden">
           <label for="tabs" class="sr-only">Select a tab</label>
           <!-- TODO: Wire up with tabs controller to support xs screens -->
-          <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+          <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-green-500 focus:outline-none focus:ring-green-500 sm:text-sm">
             <option selected>Overview</option>
             <option>Archive</option>
           </select>
@@ -45,7 +45,7 @@
 
               <a href="#archive" data-tabs-target="tab" data-action="click->tabs#select" class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm">
                 Archive
-                <span class="bg-indigo-100 text-indigo-600 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
+                <span class="bg-green-100 text-green-600 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">
                   <%= @beneficiary.needs.count %>
                 </span>
               </a>
@@ -55,7 +55,7 @@
       </div>
 
       <section id="overview" data-tabs-target="section" class="mb-8">
-        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto mb-8" %>
+        <%= link_to "New Need", [:new, :manage, @beneficiary, :need], class: "inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto mb-8" %>
 
         <div class="overflow-hidden bg-white sm:rounded-lg">
           <div class="p-8">

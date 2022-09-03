@@ -6,7 +6,7 @@
         <%= form.input :full_name, label: false, input: false do %>
           <%= form.label :full_name, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= form.input_field :full_name, class: "block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+            <%= form.input_field :full_name, class: "block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
           </div>
         <%- end %>
       </div>
@@ -15,7 +15,7 @@
         <%= form.input :gender, label: false, input: false do %>
           <%= form.label :gender, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= form.input_field :gender, collection: Beneficiary.genders, class: "block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+            <%= form.input_field :gender, collection: Beneficiary.genders, class: "block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
           </div>
         <%- end %>
       </div>
@@ -27,14 +27,14 @@
       <%= form.input :contact_number, label: false, input: false, wrapper_class: "sm:col-span-3" do %>
         <%= form.label :contact_number, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex">
-          <%= form.input_field :contact_number, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <%= form.input_field :contact_number, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
         </div>
       <%- end %>
 
       <%= form.input :email, label: false, input: false, wrapper_class: "sm:col-span-3" do %>
         <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex">
-          <%= form.input_field :email, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <%= form.input_field :email, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" %>
         </div>
       <%- end %>
 
@@ -42,7 +42,7 @@
         <%= form.input :address, label: false, input: false do %>
           <%= form.label :address, class: "block text-sm font-medium text-gray-700" %>
           <div class="mt-1">
-            <%= form.input_field :address, as: :text, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", rows: 3 %>
+            <%= form.input_field :address, as: :text, class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm", rows: 3 %>
           </div>
         <%- end %>
       </div>
